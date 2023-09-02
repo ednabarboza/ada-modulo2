@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -25,6 +25,52 @@
   </div>
 
   <a href="http://localhost:3000">EU QUERO CHAMAR O SERVER1</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu primeiro servidor web</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>Meu segundo servidor web</h1>
+
+  <button id="button">Fazer a requisição</button>
+  <div id="response"></div>
+
+  <script>
+    const requestButton = document.getElementById('button');
+    const responseDiv = document.getElementById('response');
+
+    requestButton.addEventListener('click', () => {
+      fetch('http://localhost:3000').then((response) => {
+        if(!response.ok){
+          throw new Error ('Erro ocorrido');
+        }
+        return response.text();
+      }).then(data => {
+        responseDiv.textContent = data;
+      }).catch(error => {
+        responseDiv.textContent = error.message
+      })
+    });
+
+
+  </script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

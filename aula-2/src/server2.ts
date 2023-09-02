@@ -32,6 +32,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const server = http.createServer((req, res) => {
+    //configuração do cabeçalho de cors
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Max-Age', 86400);
+
   if(req.url === '/'){
     const caminho = path.join(__dirname, '../public', 'index.html');
     fs.readFile(caminho, 'utf-8', (erro, dado) => {
