@@ -1,32 +1,45 @@
+// LIBS
 require('dotenv').config();
+const express = require('express');
+const BodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
 
-const express = require('express')
-const BodyParser = require('body-parser')
-import bodyParser from 'body-parser';
-import OlaMundo from './teste.js'
-import SwaggerUI from 'swagger-ui-express';
+// NOSSO
+const swaggerSpecs = require('./swagger');
+import OlaMundo from './teste';
 
 
-const { PORT} = process.env;
+const { PORT } = process.env;
 
-const app = express()
+const app = express();
+app.use(BodyParser.json());
 
-app.use(BodyParser.json())
+const todos = [];
 
-const todos = []
+// DOCUMENTACAO DA NOSSA API
+app.use('/playground', swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
 
-//Doc da nossa API
-
-app.use('api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
-
+/**
+ * @swagger
+ * /todos:
+ *   get:
+ *     summary: Obtém a lista de todos
+ *     responses:
+ *       201:
+ *         description: Ola mundo
+ *         content:
+ *           application/json:
+ *             examples:
+ *               todos:
+ *                 value:
+ *                   - id: 1
+ *                     title: Comprar leite
+ *                     completed: false
+ */
 app.get('/todos', (req, res) => {
-    res.json(todos)
-})
+  res.json(todos);
+});
 
 app.listen(PORT, () => {
-    console.log('aplicação em: http://localhost:3000')
-})
-
-OlaMundo.falar('Olá, mundo')
-
-//console.log('Olá mundo 123')
+  console.log(`A aplicação está rodando em: http://localhost:${PORT}`);
+});

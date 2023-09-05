@@ -1,7 +1,7 @@
-import { Request, Response, Router, NextFunction } from 'express';
+import { Request, Response, Router, NextFunction } from 'express'; //NextFunction = para middleware de autenticação - se o token estiver válido faz um next(requisição prossegue)
 import bodyParser from 'body-parser';
 
-const router = Router();
+const router = Router();  //Router = lib que gerencia as rotas
 router.use(bodyParser.json());
 
 // Contrato de objeto
