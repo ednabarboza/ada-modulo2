@@ -1,6 +1,6 @@
 module.exports = {
-    semi: true,
-    trailingComma: 'all',
-    singleQuote: true,
+    semi: true, //aspas
+    trailingComma: 'all', //conf aspas, espaços, largura
+    singleQuote: true, //aspas simples
     printWidth: 80,
 }
