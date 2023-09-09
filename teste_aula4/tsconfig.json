@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ES2016",
+        "module": "commonjs",
+        "esModuleInterop": true, //fazer interpolação de módulos (ES6 para Commonjs)
+        "forceConsistentCasingInFileNames": true, //para manter o mesmo nome de arquivos após compilação
+        "strict": true, //força o js  a ter tipagem mais estritas (strict mode)
+        "skipDefaultLibCheck": true, //ignore verificação de bibliotecas
+        "outDir": "./dist", //arquivo compilado (em JS)
+        "rootDir": "./src" //arquivo original (em TS)
+
+    },
+    "include": ["src/**/*"], 
+    "exclude": ["node_modules"] //compilador vai excluir a node_modules
+}

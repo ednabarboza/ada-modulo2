@@ -8,8 +8,11 @@ const app = express()
 app.use(cors())
 app.use(routes)
 
-const PORT = 3000
+const PORT = 8080;
+const todos = []
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`)
+    console.log(`Rodando em http://localhost/${PORT}`)
 })
+
+

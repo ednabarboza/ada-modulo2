@@ -11,6 +11,7 @@ app.use('/playground', swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
 
 const todos = []
 
+
 /**
  * @swagger
  * /todos:
@@ -60,10 +61,11 @@ app.post('/todos', (req, res) => {
  *                     title: Comprar pão
  *                     completed: false
  */
+
+
 app.get('/todos', (req, res) => {
     res.json(todos);
   });
-
 
 /**
  * @swagger
@@ -86,21 +88,33 @@ app.get('/todos', (req, res) => {
  *           example:
  *             id: 1
  *             title: Comprar pão
+ *             completed: true
+ *     responses:
+ *       200:
+ *         description: Todo atualizada com sucesso
+ *         content:
+ *           application/json:
+ *             example:
+ *               id: 1
+ *               title: Comprar pão
+ *               completed: true
+ *       404:
+ *         description: Todo não encontrada
  */
+app.put('/todos/:id', (req, res) => {
+  const todoId = parseInt(req.params.id, 10);
+  const updatedTodo = req.body;
 
-app.put('/todos:id', (req, res) => {
-    const todoId = parseInt(req.params.id, 10)
-    const updatedTodo = req.body;
+  const index = todos.findIndex(todo => todo.id === todoId);
+  if (index !== -1) {
+    todos[index] = updatedTodo;
+    res.json(updatedTodo);
+  } else {
+    res.status(404).json({ message: 'Todo não encontrada' })
+  }
+});
 
-    const index = todos.findIndex(todo => todo.id === todoId)
 
-    if(index !== -1){
-        todos[index] = updatedTodo
-        res.json(updatedTodo)
-    }else{
-        res.status(404).json({ message: 'Nao encontrado' });
-    }
-  });
 
 /**
  * @swagger
@@ -122,7 +136,7 @@ app.put('/todos:id', (req, res) => {
  *             example:
  *               id: 2
  *               title: Comprar pão
- *               completed:
+ *               completed: true
  */
 
 app.delete('/todos/:id', (req, res) => {

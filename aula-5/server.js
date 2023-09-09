@@ -5,7 +5,7 @@ const BodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 
 // NOSSO
-const swaggerSpecs = require('./swagger');
+const swaggerSpecs = require('./swagger'); //onde é feita a inspeção do código
 import OlaMundo from './teste';
 
 
@@ -25,8 +25,8 @@ app.use('/playground', swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
  *   get:
  *     summary: Obtém a lista de todos
  *     responses:
- *       201:
- *         description: Ola mundo
+ *       200:
+ *         description: Lista de todos obtida com sucesso
  *         content:
  *           application/json:
  *             examples:
